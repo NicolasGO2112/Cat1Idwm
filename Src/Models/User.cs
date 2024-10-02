@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Cat1.Src.Models
+{
+    public class User
+    {
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        public string Rut { get; set; } = string.Empty; 
+
+        [Required]
+         [StringLength(100, MinimumLength = 3)]
+        public string Nombre { get; set; } = string.Empty;
+
+        [Required]
+        public string Correo { get; set; } = string.Empty;
+
+        [Required]
+        [RegularExpression(@"MASCULINO|FEMENINO|OTRO|PREFIERO NO DECIRLO")]
+        public string Genero { get; set; } = string.Empty;
+
+        [Required]
+        public DateTime FechaNacimiento { get; set; }
+
+    }
+}
