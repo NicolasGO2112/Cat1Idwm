@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "789c0f89-d5a9-4185-80cd-58ba05a54223",
+		"name": "Cat1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "34959431"
+	},
+	"item": [
+		{
+			"name": "Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"rut\": \"string\",\r\n  \"nombre\": \"string\",\r\n  \"correo\": \"string@gmail.com\",\r\n  \"genero\": \"FEMENINO\",\r\n  \"fechaNacimiento\": \"2024-09-03T02:42:57.681Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5234/api/user"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAll",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"rut\": \"string\",\r\n  \"nombre\": \"string\",\r\n  \"correo\": \"string@gmail.com\",\r\n  \"genero\": \"FEMENINO\",\r\n  \"fechaNacimiento\": \"2024-09-03T02:42:57.681Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5234/api/user"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5234/api/user?id=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5234",
+					"path": [
+						"api",
+						"user"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"rut\": \"string\",\r\n  \"nombre\": \"string\",\r\n  \"correo\": \"string@gmail.com\",\r\n  \"genero\": \"PREFIERO NO DECIRLO\",\r\n  \"fechaNacimiento\": \"2024-10-01T02:46:09.316Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5234/api/user/2"
+			},
+			"response": []
+		}
+	]
+}
