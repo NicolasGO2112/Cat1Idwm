@@ -14,10 +14,10 @@ namespace Cat1.Src.Data
         {
             var faker = new Faker("es");
 
-            // Seed de usuarios generados aleatoriamente
+          
             var usuarios = new List<User>();
 
-            for (int i = 1; i <= 10; i++) // Generamos 10 usuarios de ejemplo
+            for (int i = 1; i <= 10; i++) 
             {
                 var genero = faker.PickRandom(new[] { "masculino", "femenino", "otro", "prefiero no decirlo" });
                 var user = new User
@@ -36,14 +36,14 @@ namespace Cat1.Src.Data
             await dataContext.SaveChangesAsync();
         }
 
-        // Genera un RUT único para cada usuario en la lista.
+       
             private static string GenerarRutUnico(Faker faker, List<User> usuarios)
         {
             string rut;
             do
             {
-                rut = faker.Random.ReplaceNumbers("########-#"); // RUT simulado
-            } while (usuarios.Any(u => u.Rut == rut)); // Asegura que el RUT sea único
+                rut = faker.Random.ReplaceNumbers("########-#"); 
+            } while (usuarios.Any(u => u.Rut == rut)); 
 
             return rut;
         }

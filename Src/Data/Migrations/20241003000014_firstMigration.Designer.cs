@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Cat1.Src.Data.Migration
+namespace Cat1.Src.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241002234324_firstMigration")]
+    [Migration("20241003000014_firstMigration")]
     partial class firstMigration
     {
         /// <inheritdoc />

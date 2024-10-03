@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Cat1.Src.Data.Migration
+namespace Cat1.Src.Data.Migrations
 {
     /// <inheritdoc />
     public partial class firstMigration : Migration
