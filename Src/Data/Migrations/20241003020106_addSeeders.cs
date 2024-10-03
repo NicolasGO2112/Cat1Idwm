@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace Cat1.src.Data.Migrations
+namespace Cat1.Src.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class addSeedersTrue : Migration
+    public partial class addSeeders : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

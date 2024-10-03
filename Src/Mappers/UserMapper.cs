@@ -28,6 +28,7 @@ namespace Cat1.Src.Mappers
                 Rut = createUserDto.Rut,
                 Nombre = createUserDto.Nombre,
                 Correo = createUserDto.Correo,
+                Genero = createUserDto.Genero,
                 FechaNacimiento = createUserDto.FechaNacimiento
             };
         }

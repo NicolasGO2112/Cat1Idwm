@@ -12,6 +12,8 @@ namespace Cat1.Src.Data
     {
         public static async Task Seed(DataContext dataContext)
         {
+            if (dataContext.Users.Any())
+            return;
             var faker = new Faker("es");
 
           
@@ -28,6 +30,7 @@ namespace Cat1.Src.Data
                     Correo = faker.Internet.Email(),
                     Genero = genero,
                     FechaNacimiento = faker.Date.Past(80, DateTime.Now.AddYears(-18)) // Edad mínima 18 años
+                    
                 };
                 usuarios.Add(user);
                 await dataContext.Users.AddAsync(user);

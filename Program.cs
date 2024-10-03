@@ -1,12 +1,17 @@
 using Cat1.Src.Data;
+using Cat1.Src.Interfaces;
+using Cat1.Src.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlite("Data Source = catedra1.db"));
 
-builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlite("Data Source = catedra1.db"));
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlite("Data Source = catedra1.db"));
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlite("Data Source = catedra1.db"));
+builder.Services.AddControllers();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
@@ -23,7 +28,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.MapControllers();
 app.Run();
 
 

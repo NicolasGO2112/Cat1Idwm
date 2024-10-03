@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Cat1.src.Data.Migrations
+namespace Cat1.Src.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241003000033_addSeedersTrue")]
-    partial class addSeedersTrue
+    [Migration("20241003020038_firstMigration")]
+    partial class firstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

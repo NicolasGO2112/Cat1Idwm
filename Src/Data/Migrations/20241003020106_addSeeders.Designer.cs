@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cat1.Src.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241003000014_firstMigration")]
-    partial class firstMigration
+    [Migration("20241003020106_addSeeders")]
+    partial class addSeeders
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
