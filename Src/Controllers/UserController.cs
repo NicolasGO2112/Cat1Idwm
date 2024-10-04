@@ -30,29 +30,36 @@ namespace Cat1.Src.Controllers
 
             if(exist)
             {
-                return Conflict("El Rut del usuario ya existe");
+                return Conflict("El RUT ya existe");
             }
             else if(createUserDto.Nombre.Length <= 3 || createUserDto.Nombre.Length >= 100)
             {
-                return BadRequest("El Nombre debe tener entre 3 y 100 caracteres");
+                return BadRequest("Alguna validación no fue cumplida");
             }
             else if(!emailAttribute.IsValid(createUserDto.Correo))
             {
-                return BadRequest("Debe ingresar un correo valido");
+                return BadRequest("Alguna validación no fue cumplida");
             }
             else if(!generosValidos.Contains(createUserDto.Genero.ToLower()))
             {
-                return BadRequest("Debe ingresar un genero valido");
+                return BadRequest("Alguna validación no fue cumplida");
             }
             else if(createUserDto.FechaNacimiento > DateTime.Now)
             {
-                return BadRequest("Debe ingresar una fecha valida");
+                return BadRequest("Alguna validación no fue cumplida");
             }
             else
             {
                 var userModel = createUserDto.ToUserFromCreatedDto();
                 await _userRepository.Post(userModel);
-                return Created();
+                var uri = Url.Action("GetUser", new { id = userModel.Id });
+
+                var response = new
+                {
+                    Message = "Usuario creado exitosamente",
+                    User = userModel.ToUserDto() 
+                };
+                return Created(uri, response);
             }
 
         }
@@ -72,33 +79,51 @@ namespace Cat1.Src.Controllers
             }
             if(exist) 
             {
-                return BadRequest("El Rut del usuario ya existe");
+                return BadRequest("Alguna validación no fue cumplida");
             }
             else if(updateUserDto.Nombre.Length <= 3 || updateUserDto.Nombre.Length >= 100)
             {
-                return BadRequest("El Nombre debe tener entre 3 y 100 caracteres");
+                return BadRequest("Alguna validación no fue cumplida");
             }
             else if(!emailAttribute.IsValid(updateUserDto.Correo))
             {
-                return BadRequest("Debe ingresar un correo valido");
+                return BadRequest("Alguna validación no fue cumplida");
             }
             else if(!generosValidos.Contains(updateUserDto.Genero.ToLower()))
             {
-                return BadRequest("Debe ingresar un genero valido");
+                return BadRequest("Alguna validación no fue cumplida");
             }
             else if(updateUserDto.FechaNacimiento > DateTime.Now)
             {
-                return BadRequest("Debe ingresar una fecha valida");
+                return BadRequest("Alguna validación no fue cumplida");
             }
-            return Ok(userModel.ToUserDto());
+            var response = new
+            {
+                Message = "Usuario actualizado exitosamente",
+                User = userModel
+            };
+            return Ok(response);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] string order = "", [FromQuery] string gender = "")
         {
             var users = await _userRepository.GetAll();
             var userDto = users.Select(p => p.ToUserDto());
-            return Ok(userDto);
+            if (order.ToLower() == "asc"){userDto = userDto.OrderByDescending(u => u.Nombre);}
+            else if (order.ToLower() == "desc"){userDto = userDto.OrderBy(u => u.Nombre);}
+           
+            if(gender.ToLower() == "masculino"){userDto = userDto.Where(u => u.Genero.ToLower() == gender).ToList();}
+            else if(gender.ToLower() == "femenino"){userDto = userDto.Where(u => u.Genero.ToLower() == gender).ToList();}
+            else if(gender.ToLower() == "otro"){userDto = userDto.Where(u => u.Genero.ToLower() == gender).ToList();}
+            else if(gender.ToLower() == "prefiero no decirlo"){userDto = userDto.Where(u => u.Genero.ToLower() == gender).ToList();}
+            
+            var response = new
+            {
+                Message = "Usuarios obtenidos exitosamente",
+                Users = userDto
+            };
+            return Ok(response);
         
         }
 
@@ -107,12 +132,13 @@ namespace Cat1.Src.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            var user = await _userRepository.Delete(id);
-            if(user == null)
+            try{
+                var user = await _userRepository.Delete(id);
+            }catch
             {
-                return NotFound();
+                return NotFound("Usuario no encontrado");
             }
-            return Ok(user);
+            return Ok("Usuario eliminado exitosamente");
         }
     }
 }

@@ -29,6 +29,11 @@ namespace Cat1.Src.Repository
             return userModel;
         }
 
+        public async Task<bool> ExistsById(int id)
+        {
+            return await _dataContext.Users.AnyAsync(x => x.Id == id);
+        }
+
         public async Task<bool> ExistsByRut(string rut)
         {
             return await _dataContext.Users.AnyAsync(x => x.Rut == rut);

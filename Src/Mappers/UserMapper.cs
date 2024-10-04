@@ -17,6 +17,7 @@ namespace Cat1.Src.Mappers
                 Rut = userModel.Rut,
                 Nombre = userModel.Nombre,
                 Correo = userModel.Correo,
+                Genero = userModel.Genero,
                 FechaNacimiento = userModel.FechaNacimiento
             };
         }

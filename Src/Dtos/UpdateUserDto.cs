@@ -20,7 +20,7 @@ namespace Cat1.Src.Dtos
         public string Correo { get; set; } = string.Empty;
 
         [Required]
-        [RegularExpression(@"MASCULINO|FEMENINO|OTRO|PREFIERO NO DECIRLO")]
+
         public string Genero { get; set; } = string.Empty;
 
         [Required]

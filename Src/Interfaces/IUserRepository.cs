@@ -10,6 +10,7 @@ namespace Cat1.Src.Interfaces
     public interface IUserRepository
     {
         Task <bool> ExistsByRut(string rut);
+        Task <bool> ExistsById(int id);
         Task <User> Post(User product);
         Task <List<User>> GetAll();
         Task <User?> Put(int id, UpdateUserDto updateUserDto);
